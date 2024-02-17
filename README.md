@@ -1,3 +1,6 @@
+> [!NOTE]
+> This is an unofficial fork from the archived [Mapbox Maps SDKs for iOS and macOS](https://github.com/mapbox/mapbox-gl-native-ios) repository to add support for latest Apple Silicon macOS variants.
+
 # Mapbox Maps SDKs for iOS and macOS
 
 The Mapbox Maps SDK for iOS is an open-source framework for embedding interactive map views with scalable, customizable vector maps into Cocoa Touch applications on iOS 9.0 and above using Objective-C, Swift, or Interface Builder. It takes stylesheets that conform to the [Mapbox Style Specification](https://www.mapbox.com/mapbox-gl-style-spec/), applies them to vector tiles that conform to the [Mapbox Vector Tile Specification](https://www.mapbox.com/developers/vector-tiles/), and renders them using OpenGL. It is based on the [Mapbox GL Native](https://github.com/mapbox/mapbox-gl-native) library.
