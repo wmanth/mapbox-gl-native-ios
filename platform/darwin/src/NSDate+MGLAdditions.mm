@@ -1,5 +1,7 @@
 #import "NSDate+MGLAdditions.h"
 
+#import <ratio>
+
 mbgl::Duration MGLDurationFromTimeInterval(NSTimeInterval duration)
 {
     return std::chrono::duration_cast<mbgl::Duration>(std::chrono::duration<NSTimeInterval>(duration));

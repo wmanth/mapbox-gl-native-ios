@@ -25,8 +25,7 @@
 #import "UIImage+MGLAdditions.h"
 #else
 #import "NSImage+MGLAdditions.h"
-#import <CoreGraphics/CoreGraphics.h>
-#import <QuartzCore/QuartzCore.h>
+#import <CoreImage/CoreImage.h>
 #endif
 
 #import "NSBundle+MGLAdditions.h"

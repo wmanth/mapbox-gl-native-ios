@@ -76,6 +76,7 @@ LIBRARY_SEARCH_PATHS = $(inherited) $(PROJECT_DIR)
 
 OTHER_CFLAGS = $(inherited) -fvisibility=hidden
 OTHER_CPLUSPLUSFLAGS = $(inherited) -fvisibility=hidden -fcxx-modules
+OTHER_CPLUSPLUSFLAGS = $(OTHER_CPLUSPLUSFLAGS) -Wno-compare-distinct-pointer-types
 OTHER_SWIFT_FLAGS = -warnings-as-errors
 
 // User defined

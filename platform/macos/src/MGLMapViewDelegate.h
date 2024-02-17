@@ -1,12 +1,16 @@
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class MGLMapView;
+@class MGLMapCamera;
 @class MGLAnnotationImage;
 @class MGLPolygon;
 @class MGLPolyline;
 @class MGLShape;
+@class MGLStyle;
+
+@protocol MGLAnnotation;
 
 /**
  The `MGLMapViewDelegate` protocol defines a set of optional methods that you
