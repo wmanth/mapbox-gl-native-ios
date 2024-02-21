@@ -3,7 +3,40 @@ export IS_LOCAL_DEVELOPMENT ?= true
 export TARGET_BRANCH ?= master
 
 CMAKE ?= cmake
+SIGNING_IDENTITY ?= 'Apple Development'
 
+MACOS_BRANCH = $(shell git describe --tags --match=macos-v*.*.* --abbrev=0)
+MACOS_VERSION = $(shell echo ${MACOS_BRANCH} | sed 's/^macos-v//')
+
+all: framework documentation
+
+build/macos/CMakeCache.txt:
+	@$(CMAKE) -B $(@D) -S $(PWD) -G Ninja \
+		-DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" \
+		-DMACOS_FRAMEWORK_VERSION="$(MACOS_VERSION)" \
+		-DMACOS_SIGNING_IDENTITY="$(SIGNING_IDENTITY)"
+
+build/macos/Mapbox.framework: build/macos/CMakeCache.txt
+	@$(CMAKE) --build $(@D) --target framework
+
+.PHONY: framework
+framework: build/macos/Mapbox.framework
+
+build/documentation:
+	@jazzy \
+		--config platform/macos/jazzy.yml \
+		--sdk macosx \
+		--github-file-prefix https://github.com/mapbox/mapbox-gl-native-ios/tree/$(MACOS_BRANCH) \
+		--module-version $(MACOS_VERSION) \
+		--readme platform/macos/docs/doc-README.md \
+		--documentation="platform/{darwin,macos}/docs/guides/*.md" \
+		--theme platform/darwin/docs/theme \
+		--output $@ \
+		--title "Maps SDK for macOS" \
+		--module-version $(MACOS_VERSION)
+
+.PHONY: documentation
+documentation: build/documentation
 
 ifeq ($(BUILDTYPE), Release)
 else ifeq ($(BUILDTYPE), RelWithDebInfo)

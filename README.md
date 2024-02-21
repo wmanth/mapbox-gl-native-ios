@@ -1,5 +1,11 @@
 > [!NOTE]
 > This is an unofficial fork from the archived [Mapbox Maps SDKs for iOS and macOS](https://github.com/mapbox/mapbox-gl-native-ios) repository to add support for latest Apple Silicon macOS variants.
+>
+> To build the macOS framework as universal library, after cloning this repository call:
+> ```
+> $ git submodule update --init
+> $ make framework
+> ```
 
 # Mapbox Maps SDKs for iOS and macOS
 
