@@ -22,6 +22,21 @@ build/macos/Mapbox.framework: build/macos/CMakeCache.txt
 .PHONY: framework
 framework: build/macos/Mapbox.framework
 
+build/Mapbox.xcframework: build/macos/Mapbox.framework
+	@xcodebuild -create-xcframework -framework $< -output $@
+
+build/Mapbox-v$(MACOS_VERSION).zip: build/Mapbox.xcframework
+	@cd $(@D) && zip -r -q $(@F) $(^F) && echo "Package complete: $(@F)"
+
+build/Package.swift: platform/macos/Package.swift.in build/Mapbox-v$(MACOS_VERSION).zip
+	@sed -e '\
+		s/{VERSION}/$(MACOS_VERSION)/g; \
+		s/{SHASUM}/$(shell shasum -a 256 $(word 2,$^) | cut -f 1 -d " ")/g' \
+	$< > $@
+
+.PHONY: package
+package: build/Package.swift
+
 build/documentation:
 	@jazzy \
 		--config platform/macos/jazzy.yml \
