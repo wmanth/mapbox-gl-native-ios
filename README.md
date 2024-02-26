@@ -6,6 +6,8 @@
 > $ git submodule update --init
 > $ make framework
 > ```
+>
+> A ready-to-use Swift package for macOS could be found at [Mapbox Maps SDK for macOS Swift package](https://github.com/wmanth/mapbox-gl-native-spm)
 
 # Mapbox Maps SDKs for iOS and macOS
 
